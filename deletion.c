@@ -5,7 +5,7 @@ struct single_linked_list
         int data;
         struct single_linked_list *p;
 };
-void delete_end(struct single_linked_list *head);
+void delete_random(struct single_linked_list *head,int position);
 int main()
 {
         struct single_linked_list *head=(struct single_linked_list*)malloc(sizeof(struct single_linked_list));
@@ -21,16 +21,17 @@ int main()
         current->data=30;
         current->p=NULL;
         head->p->p=current;
-        delete_end(head);
+        delete_random(head,2);
 }
-void delete_end(struct single_linked_list *head)	
+void delete_random(struct single_linked_list *head,int position)	
 {
 	struct single_linked_list *temp=head;
 	if(head==NULL)
 		printf("List is empty");
-	else
+        while(position!=1)
 	{
-		temp=temp->p->p;
+		temp=temp->p;
+		position--;
 	printf(" deleted element is %d ",temp->data);
         free(temp);
 	}
